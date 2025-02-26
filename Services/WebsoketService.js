@@ -1,7 +1,7 @@
 const ws = require("ws");
 const jwt = require('jsonwebtoken');
-const { broadcastOnlineUsers } = require('../utils/broadcastUtils');
-const { verifyToken } = require('../utils/jwtUtils');
+const { broadcastOnlineUsers } = require('../Utils/broadcastUtils');
+const { verifyToken } = require('../Utils/jwtUtils');
 const Message = require("../models/message");
 const activeUsers = new Map();  // Store connections per userId
 
