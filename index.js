@@ -13,7 +13,7 @@ const { Readable } = require('stream');
 const ws = require("ws");
 const Message = require("./models/message")
 const { connection } = require('mongoose');
-const contactRoutes = require('./routes/contactus');
+const contactRoutes = require('./Routes/contactus');
 const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
 const path = require('path');
 const fs = require('fs');
@@ -307,7 +307,7 @@ app.post("/logout", (req, res) => {
     }).status(200).json({ message: "Logged out successfully" });
 });
 
-const server = app.listen(4000, () => {
+const server = app.listen(process.env.PORT, () => {
     console.log("Server running on port 4000");
 });
 
