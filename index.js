@@ -43,7 +43,8 @@ mongoose.connect(process.env.DB_URL);
 
 
 const bcryptSalt = bcrypt.genSaltSync(10)
-const upload = multer({ dest: 'uploads/' });
+
+const upload = multer({ storage: multer.memoryStorage() });
 
 app.get('/test', (req, res) => {
     res.json("test ok");
@@ -105,7 +106,7 @@ app.post('/uploadProfile', upload.single('file'), async (req, res) => {
         // Upload file to S3
         const uploadCommand = new PutObjectCommand(params);
         await s3Client.send(uploadCommand);
-        const fileUrl = `https://${Date.now().toString()}_${ourUserId}_${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${params.Key}`;
+        const fileUrl = `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${fileKey}`;
         const updates = {
             profilePicture: fileUrl
         }
