@@ -23,7 +23,7 @@ dotenv.config();
 
 // CORS Configuration
 app.use(cors({
-    origin: "http://localhost:5173", // Allow requests from your frontend URL
+    origin: process.env.CLIENT_URL, // Allow requests from your frontend URL
     credentials: true, // Allow sending cookies and credentials, // Allow only these headers
 }));
 app.use(express.urlencoded({ extended: true }));
